@@ -445,12 +445,12 @@ Here I lost some time, thinking where or how could we hijack execution of these 
 
 Searching web for BASH_ENV gives us this explanation:
 
-    ```
+```
     BASH_ENV is an environment variable in Unix-like systems that 
     specifies the file to be executed when a non-interactive shell is started. 
     It allows users to set up a specific environment for scripts
     or commands run in that shell.
-    ```
+```
 
 ### Exploit
 
