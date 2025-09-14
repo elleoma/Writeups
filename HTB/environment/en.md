@@ -283,7 +283,7 @@ hish:x:1000:1000:hish,,,:/home/hish:/bin/bash
 After looking at `/etc/passwd` (file that contains all users existing on unix systems) we can guess that we'll need to get access to hish user and then exploit our way to root:
 `www-data -> hish -> root`
 
-## Recon as www-data
+### Recon as www-data
 
 To get started we would need to check for any critical files that can contain information about hish password (like logs, databases).
 
@@ -364,7 +364,9 @@ gpg: Fatal: can't create directory '/var/www/.gnupg': Permission denied
 
 because we don't have permission to create files as www-data user in /var/www.
 
-So we'll need to copy `keyvault.gpg` and hish's `.gnupg` directory with their private keys to directory we have write permissions to. I'll use `/tmp` for this:
+So we'll need to copy `keyvault.gpg` and hish's `.gnupg` directory with their private keys to directory we have write permissions to. I'll use `/tmp` for this
+
+Also, for gpg to know that it needs to use private keys from our copied directory we need to pass `--homedir /tmp/.gnupg` parameter:
 
 ```bash
 www-data@environment:$ cd /tmp
@@ -405,11 +407,11 @@ id
 uid=1000(hish) gid=1000(hish) groups=1000(hish),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),100(users),106(netdev),110(bluetooth)
 ```
 
+## Root Privilege Escalation
+
 We're in! First thing I check when I get a user on a system is to see what programs I can run with sudo using `sudo -l`:
 
 ![image](imgs/hish-sudo.png)
-
-## Root Privilege Escalation
 
 Looing at `sudo -l` output we can see, that there's some `systeminfo` program that we can execute with root priviliges
 
@@ -442,9 +444,13 @@ Here I lost some time, thinking where or how could we hijack execution of these 
 ### BASH_ENV
 
 Searching web for BASH_ENV gives us this explanation:
-```
-BASH_ENV is an environment variable in Unix-like systems that specifies the file to be executed when a non-interactive shell is started. It allows users to set up a specific environment for scripts or commands run in that shell.
-```
+
+    ```
+    BASH_ENV is an environment variable in Unix-like systems that 
+    specifies the file to be executed when a non-interactive shell is started. 
+    It allows users to set up a specific environment for scripts
+    or commands run in that shell.
+    ```
 
 ### Exploit
 
@@ -468,5 +474,7 @@ root-bash-5.2# cat root.txt
 root-bash-5.2#
 ```
 
-Thats it
+![image](imgs/root.png)
+
+Thats it!
 We successfully got root shell on system!
