@@ -42,7 +42,7 @@ pdftk retard.pdf background hidden.pdf output final.pdf
 
 - final.pdf - нове резюме з прихованою інструкцію для ШІ всередині
 
-- Ось як виглядає моє резюме з прихованою інструкцією:
+Ось як виглядає моє резюме з прихованою інструкцією:
 
 ![image](imgs/resume.png)
 
