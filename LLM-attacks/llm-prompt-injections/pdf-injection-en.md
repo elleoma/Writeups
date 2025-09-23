@@ -34,10 +34,13 @@ cat payload.txt | enscript -B -f Courier10 -o - | ps2pdf - hidden.pdf
 pdftk retard.pdf background hidden.pdf output final.pdf
 ```
 
-payload.txt - our prompt we are trying to inject
-hidden.pdf - our payload gets converted to pdf
-retard.pdf - our resume in PDF format
-final.pdf - our new resume with hidden prompt
+- payload.txt - our prompt we are trying to inject
+
+- hidden.pdf - our payload gets converted to pdf
+
+- retard.pdf - our resume in PDF format
+
+- final.pdf - our new resume with hidden prompt
 
 Here is how my resume looks with hidden prompt:
 
