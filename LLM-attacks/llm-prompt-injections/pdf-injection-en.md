@@ -1,5 +1,7 @@
 # LLM prompt injection inside PDF files (CVs/resumes)
 
+[Repo with files](https://github.com/elleoma/llm-resume-injection)
+
 Honestly I'm not sure if HRs often use LLMs like ChatGPT to analyze applicants' resumes, but here I am gonna explain how to do prompt injection inside your resume anyway.
 
 Before doing injecting, we'll need to 'suffer' for a bit - get in the shoes of a recruiter and think how we would feed resume to the AI.
